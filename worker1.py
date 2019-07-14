@@ -34,13 +34,13 @@ def worker1(PATH_TO_FROZEN_GRAPH,category_index):
             od_graph_def.ParseFromString(serialized_graph)
             tf.import_graph_def(od_graph_def, name='')
 
-    print("graph loaded")
+    #print("graph loaded")
     config1 = tf.ConfigProto()
-    #config1.gpu_options.allow_growth = True
-    config1.gpu_options.per_process_gpu_memory_fraction = 0.4
+    config1.gpu_options.allow_growth = True
+    #config1.gpu_options.per_process_gpu_memory_fraction = 0.4
     sess1= tf.Session(graph=detection_graph, config=config1)
     frame_num = 1490;
-    print("running")
+    #print("running")
     while frame_num:
         frame_num -= 1
         ret, image = cap.read()
@@ -52,7 +52,7 @@ def worker1(PATH_TO_FROZEN_GRAPH,category_index):
             fourcc = cv2.VideoWriter_fourcc(*'MJPG')
             out = cv2.VideoWriter("test_out_m_1.avi", fourcc, 25.0, (w, h))
     
-        print("starting")
+        #print("starting")
         image_np = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     
         # the array based representation of the image will be used later in order to prepare the
@@ -69,7 +69,7 @@ def worker1(PATH_TO_FROZEN_GRAPH,category_index):
         
         num_detections = detection_graph.get_tensor_by_name('num_detections:0')
                   # Actual detection.
-        print("session")
+        #print("session")
         start_time = time.time()
         (boxes, scores, classes, num_detections) = sess1.run(
                       [boxes, scores, classes, num_detections],

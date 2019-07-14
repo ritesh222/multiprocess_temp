@@ -37,7 +37,7 @@ def worker2(PATH_TO_CKPT_2,category_index_2):
 
     config2 = tf.ConfigProto()
     #config2.gpu_options.allow_growth = True
-    config2.gpu_options.per_process_gpu_memory_fraction = 0.4
+    config2.gpu_options.per_process_gpu_memory_fraction = 0.15
     sess2= tf.Session(graph=detection_graph_2, config=config2)
     frame_num = 1490;
     while frame_num:
@@ -49,7 +49,7 @@ def worker2(PATH_TO_CKPT_2,category_index_2):
         if out is None:
             [h, w] = image.shape[:2]
             fourcc = cv2.VideoWriter_fourcc(*'MJPG')
-            out = cv2.VideoWriter("test_out_m_1.avi", fourcc, 25.0, (w, h))
+            out = cv2.VideoWriter("test_out_m_2.avi", fourcc, 25.0, (w, h))
     
     
         image_np = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)

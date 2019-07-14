@@ -23,7 +23,7 @@ import tarfile
 
 
 # What model to download.
-MODEL_NAME = 'ssd_mobilenet_v1_coco_2017_11_17'
+MODEL_NAME = 'ssd_inception_v2_coco_2018_01_28'
 MODEL_FILE = MODEL_NAME + '.tar.gz'
 DOWNLOAD_BASE = 'http://download.tensorflow.org/models/object_detection/'
 
@@ -40,7 +40,7 @@ for file in tar_file.getmembers():
   if 'frozen_inference_graph.pb' in file_name:
     tar_file.extract(file, os.getcwd())
 
-category_index = np.load('config.npy').item()
+category_index = np.load('config.npy',allow_pickle=True).item()
 
 PATH_TO_CKPT_2='frozen_inference_graph_face.pb'
 category_index_2 = {1: {'id': 2, 'name': 'face'}, 2: {'id': 1, 'name': 'background'}}
