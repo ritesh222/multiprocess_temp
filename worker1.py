@@ -36,8 +36,8 @@ def worker1(PATH_TO_FROZEN_GRAPH,category_index):
 
     #print("graph loaded")
     config1 = tf.ConfigProto()
-    config1.gpu_options.allow_growth = True
-    #config1.gpu_options.per_process_gpu_memory_fraction = 0.4
+    #config1.gpu_options.allow_growth = True
+    config1.gpu_options.per_process_gpu_memory_fraction = 0.75
     sess1= tf.Session(graph=detection_graph, config=config1)
     frame_num = 1490;
     #print("running")
@@ -93,7 +93,7 @@ def worker1(PATH_TO_FROZEN_GRAPH,category_index):
                       )
                       
         elapsed_time = time.time() - start_time
-        print('inference time cost: {}'.format(elapsed_time))
+        print('pid: {} inference time cost: {}'.format(os.getpid(),elapsed_time))
               
         out.write(image)
 
