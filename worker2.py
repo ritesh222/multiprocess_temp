@@ -65,7 +65,7 @@ def worker2(PATH_TO_CKPT_2,category_index_2):
                   # Score is shown on the result image, together with the class label.
         scores = detection_graph_2.get_tensor_by_name('detection_scores:0')
         classes = detection_graph_2.get_tensor_by_name('detection_classes:0')
-        print(np.squeeze(classes))
+        #print(np.squeeze(classes))
         num_detections = detection_graph_2.get_tensor_by_name('num_detections:0')
                   # Actual detection.
         start_time = time.time()
@@ -91,7 +91,7 @@ def worker2(PATH_TO_CKPT_2,category_index_2):
                       )
                       
         elapsed_time = time.time() - start_time
-        print('inference time cost: {}'.format(elapsed_time))
+        print('pid: {} inference time cost: {}'.format(os.getpid(),elapsed_time))
               
         out.write(image)
 
